@@ -1,16 +1,16 @@
 variable "ec2_instance_type" {
-    default = "t2.micro"
-    type = string
-  
+  default = "t2.micro"
+  type    = string
+
 }
 
 variable "ec2_root_storage_size" {
-    default = 14
-    type = number
+  default = 14
+  type    = number
 }
 
 variable "ec2_ami_id" {
-    default = "ami-03f4878755434977f"
-    type = string
-  
+  default = "ami-03f4878755434977f"
+  type    = string
+
 }

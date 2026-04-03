@@ -61,8 +61,14 @@ resource "aws_security_group" "my_security_group" {
 
 resource "aws_instance" "my_instance" {
 
-  ami = var.ec2_ami_id
-  instance_type = var.ec2_instance_type
+  for_each = tomap({
+    "my-intance-1-low" = "t2.micro"
+    "my-instance-2-medium" = "t2.medium"
+  })
+
+  depends_on = [aws_security_group.my_security_group, aws_key_pair.my_key]
+  ami           = var.ec2_ami_id
+  instance_type = each.value
 
   key_name = aws_key_pair.my_key.key_name
 
@@ -70,13 +76,15 @@ resource "aws_instance" "my_instance" {
 
   user_data = file("install_nginx.sh")
 
+    associate_public_ip_address = true 
+
   root_block_device {
     volume_size = var.ec2_root_storage_size
     volume_type = "gp3"
   }
 
   tags = {
-    Name = "him-ec2"
+    Name = each.key
   }
 
 }
