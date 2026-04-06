@@ -4,7 +4,7 @@ variable "ec2_instance_type" {
 
 }
 
-variable "ec2_root_storage_size" {
+variable "ec2_default_root_storage_size" {
   default = 14
   type    = number
 }
@@ -14,3 +14,11 @@ variable "ec2_ami_id" {
   type    = string
 
 }
+
+
+
+variable "env" {
+  default = "prd"
+  type = string
+}
+
