@@ -64,7 +64,7 @@ resource "aws_instance" "my_instance" {
   for_each = tomap({
     "my-instance-1-low" = "t2.micro"
     "my-instance-2-medium" = "t2.medium"
-    "my-instance-3-large" = "t2.large"
+    
   })
 
   depends_on = [aws_security_group.my_security_group, aws_key_pair.my_key]
