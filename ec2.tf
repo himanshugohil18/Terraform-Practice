@@ -62,8 +62,9 @@ resource "aws_security_group" "my_security_group" {
 resource "aws_instance" "my_instance" {
 
   for_each = tomap({
-    "my-intance-1-low" = "t2.micro"
+    "my-instance-1-low" = "t2.micro"
     "my-instance-2-medium" = "t2.medium"
+    "my-instance-3-large" = "t2.large"
   })
 
   depends_on = [aws_security_group.my_security_group, aws_key_pair.my_key]
@@ -90,9 +91,4 @@ resource "aws_instance" "my_instance" {
 }
 
 
-resource "aws_instance" "my_new_instance" {
 
-  ami = "unknown"
-  instance_type = "unknown"
-
-}
